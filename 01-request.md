@@ -1,76 +1,76 @@
-# The Request
+# Запрос
 
-Have you ever wondered how Drupal does what it does? Good, me too. In this series of posts, I'm going to explain what Drupal is doing behind the scenes to perform its magic.
+Вам никогда не было интересно как Drupal делает, то что он делает? Хорошо, мне тоже. В этой серии статей, я собираюсь объяснить что происходит за сценой, когда Drupal творит свою чудеса.
 
 In Part 1, we'll keep it fairly high level and walk through the path a request takes as it moves through Drupal. In later parts, we'll take deeper dives into individual pieces of this process.
 
-## Step 0: Some background information
+## Шаг 0: Некоторая справочная информация
 
-For this example, let's pretend that George, a user of your site, wants to visit your About Us page, which lives at `http://oursite/about-us`. 
+Для этого примера, давайте договоримся что Джордж, пользователь вашего сайта, хочет посетить страница About Us, которая находится по адресу `http://oursite/about-us`.
 
-Let's also pretend that this page is a node (specifically, the node with `nid` of `1`) with a URL alias of `about-us`.
+Также давайте договоримся что эта страница - материал (материал у которого `nid` равен `1`) URL синоним у которого `about-us`.
 
-And to keep things simple, we'll say that we're using Apache as our webserver, and there's nothing fancy sitting in front of Drupal, such as a caching layer or the like. 
+Чтобы не усложнять, условимся что мы используем вебсервер Apache, and there's nothing fancy sitting in front of Drupal, such as a caching layer or the like. 
 
-**So basically, we're talking about a plain old Drupal site on a plain old webserver.**
+**То есть мы говорим о старом добром Drupal на старом добром вебсервере.**
 
-## Step 1: The request hits the server
+## Шаг 1: Запрос достигает сервера
 
-There's some pretty hot action that happens before Drupal even sees the request. George's browser sends a request to `http://oursite.com/about-us`, and this thing we call the internet figures out that that should go to our server. If you're not well versed on how that part happens, you may benefit from reading [this infographic on how the internet works](http://i.imgur.com/fzY1Arg.jpg).
+Тут есть несколько выжных действий, до того как Drupal увидит этот запрос. Браузер Джорджа отправил запрос по адресу `http://oursite.com/about-us`, и штука, которую мы называем интернет делает все, чтобы мы смогли благополучно добраться до сервера. Если вы хотите детальнее узнать, как это происходит, то прочитайте [как работает интернет](http://i.imgur.com/fzY1Arg.jpg).
 
-Once our server has received the request, that's when the fun begins. This request will land on port `80`, and Apache just so happens to be listening on that port, so Apache will immediately see the request and decide what to do with it. 
+Как только наш сервер, получает запрос, начинается магия. По прибытию этот запрос обратиться в порт `80`, а на этом порту его уже ждет Apache, так что Apache немедлено заметит запрос и уже теперь он будет решать, что с ним делать.
 
-Since the request is going to `oursite.com` then Apache can look into its configuration files to see what the root directory is for `oursite.com` (along with lots of other info about it which is out of scope for this post). We'll say that the root directory for our site is `/var/www/oursite`, which is where Drupal lives. So Apache is going to send the request there.
+Так как запрос направляется в `oursite.com` Apache будет просматрить свои настройки, чтобы найти корневую директорию для домена `oursite.com` (along with lots of other info about it which is out of scope for this post). Пусть корневая директория для нашего сайта `/var/www/oursite`, это место, где живет Drupal. Так что Apache собирается отправить запрос Джорджа туда.
 
-## Step 2: The .htaccess file 
+## Шаг 2: Файл .htaccess 
 
-But Drupal hasn't taken over just yet. Drupal ships with a `.htaccess` file which is a way of telling Apache some things. In fact, Drupal's `.htaccess` tells Apache a whole lot of things. The most important things it does are:
+В корне Drupal есть файл `.htaccess` в котором хранятся инструкции для Apache. И перед тем как продолжит Apache сначала выполнит их все. Самые важные из них:
 
-1. Protects files that could contain source code from being viewable, such as `.module` files or `.inc` files, both of which contain PHP.
-2. Allows requests that point directly to files in the filesystem to pass through without touching Drupal.
-3. Redirects all other requests to Drupal's `index.php` file.
+1. Закрыть от просмотра файлы в которых может содержаться исходный код, такие файлы как `.module` или `.inc`, в которых находитися PHP код.
+2. Отправлять запросы, которые идут к обычным файлам (изображения, ), напрямую при этом не затрагивая Drupal.
+3. Все остальные запросы он перенаправлять в файл `index.php`.
 
-It also does some other fancy things such as disabling directory indexes and allowing Drupal to serve gzipped CSS and JS, but those are the biggies.
+Также в `.htaccess` присутсвуют и другие инструкции: закрывать индексацию директорий, сжимать файлы CSS и JS, и т.д, но они играют вторую роль.
 
-So, in our case, Apache will see that we're looking for `/about-us`, and will say:
+В нашем случаем Apache знает, что мы ищем `/about-us` и затем воспользуется инструкциями из `.htaccess`, чтобы ответить на вопросы:
 
-1. *Is this request trying to access a file that it shouldn't? No.*
-2. *Is this request directly pointing to a file in the filesystem? No.*
-3. *Then this request should be sent to `index.php`!*
+1. *Запрос пытается получить доступ к файлу, к которому его нельзя пускать? Нет.*
+2. *Запрос хочет получить доступ к файлу, который есть в файловой системе? Нет.*
+3. *Тогда этот запрос отправляется в `index.php`!*
 
-And away we go...
+Продолжим...
 
-## Step 3: Drupal's index.php file
+## Шаг 3: Файл index.php
 
-Finally, we have reached Drupal, and we're looking at PHP. Drupal's index.php is super clean, and in fact only has 4 lines of code, each of which are easy to understand.
+Наконец-то мы добрались до Drupal, и мы смотрим на PHP код. Файл index.php в Drupal очень простой, там всего 4 строки кода, каждую из которых легко понять.
 
-### Line 1: Define DRUPAL_ROOT
+### Строка 1: Задаеём DRUPAL_ROOT
 
 ```php
 define('DRUPAL_ROOT', getcwd());
 ```
 
-This just sets a constant called `DRUPAL_ROOT` to be the value of the current directory that `index.php` is in. This constant is [used all over the place](https://api.drupal.org/api/drupal/index.php/constant/constants/DRUPAL_ROOT/7) in the Drupal core codebase.
+Задает константу с именем `DRUPAL_ROOT` а в её значение мы поместим путь до папки в которой находиться файл `index.php`. Эта константа [используется повсюду](https://api.drupal.org/api/drupal/index.php/constant/constants/DRUPAL_ROOT/7) в ядре Drupal.
 
-In our case, this means that `DRUPAL_ROOT` gets set to `/var/www/oursite`.
+В нашем случае `DRUPAL_ROOT` примет значение `/var/www/oursite`.
 
-### Lines 2 and 3: Bootstrap Drupal
+### Строка 2 и 3: Drupal бутстрап
 
 ```php
 require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 ```
 
-These lines run a full Drupal bootstrap, which basically means that they tell Drupal "Hey, grab all of the stuff you're going to need before we can get to actually handling this request."
+Эти строки запускают полный Drupal бутстрап, то есть они говорят: "Эй Drupal, подготовь всё необходимое, перед тем как мы начнем обрабатывать этот запрос."
 
-**For more information about the bootstrap process, see Part 2 of this series.**
+**Подробнее бутстрап будет рассматриваться во 2 главе.**
 
-### Line 4: Do everything else
+### Строка 4: Делаем все остальное
 
 ```php
 menu_execute_active_handler();
 ```
 
-This simple looking function is where the heart and soul of Drupal lives. 
+Эта на первый взгляд неприметная функция, плоть и кровь Drupal.
 
-**For more information about what happens in this ball of wax, visit Part 3 of this series.**
+**Подробнее резберем эту функция в 3 главе.**

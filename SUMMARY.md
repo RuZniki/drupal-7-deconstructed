@@ -1,6 +1,6 @@
 # Summary
 
-* [Request](01-request.md)
+* [Запрос](01-request.md)
 * [Bootstrap](02-bootstrap.md)
 * [Router](03-router.md)
 * [Database](04-database.md)
