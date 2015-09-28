@@ -1,12 +1,12 @@
 # Drupal 7 Deconstructed
 
-*How Drupal works: a plain(ish) English guide*
+*Как работает Drupal: a plain(ish) English guide*
 
-**Written by [Mike Crittenden](http://mikecr.it) with the help of the community.**
+**Написано [Mike Crittenden](http://mikecr.it) при поддержке сообщества.**
 
-If you've ever wondered how Drupal works, then this book is for you.
+Если вам когда-нибудь становилось интересно, как работает Drupal, тогда это книга для вас.
 
-It should be readable without having the actual core code in front of you, but feel free to reference the actual code for anything that you'd like as you go. I've tried to include API links to any functions or classes that I talk about, so click away!
+Предполагается, что книгу можно читать, даже если перед глазами нет кода, but feel free to reference the actual code for anything that you'd like as you go. Я старался добавлять ссылку API на любую функция или класс, о котором я говорю, так что просто жми на ссылку.
 
 ## Contributing
 
@@ -19,15 +19,15 @@ If you want to contribute to this, you have a few options.
 ## FAQ
 
 <dl>
-  <dt>Who is this for?</dt>
-  <dd>Any developer who has ever wanted to know how Drupal works should be able to get some value out of this.</dd>
+  <dt>Для кого написана эта книга?</dt>
+  <dd>Для любого разработчика, которому становилось интересно узнать как работает Drupal, сможет получить эту информацию из этой книги.</dd>
 
-  <dt>Do I have to be an expert to understand it?</dt>
-  <dd>No. As long as you have a basic understanding of the basics of Drupal development, you should be fine.</dd>
+  <dt>Должен ли я быть профессионалом, чтобы понять эту книгу?</dt>
+  <dd>Нет. Достаточно начальных знаний о Drupal разработке.</dd>
 
-  <dt>Why Drupal 7? What about Drupal 8?</dt>
-  <dd>Drupal 7 because, at the time of this writing, Drupal 7 still has more than a year of shelf life. Drupal 8 Deconstructed will need to be written too, though!</dd>
+  <dt>Почему Drupal 7? Что на счет Drupal 8?</dt>
+  <dd>Потому что на момент начала написания книги, до выхода Drupal 8 остается еще 1 год. Тем не менее Drupal 8 Deconstructed тоже надо будет написать!</dd>
 
   <dt>What about deconstructing contrib?</dt>
-  <dd>I'd like to dive into how some of the more popular contrib modules work, such as Views, Panels, CTools, etc., once the core chapters are complete.</dd>
+  <dd>Я с удовольствием рассмотрю работу популярных модулей, таких как Views, Panels, CTools, и т.д., как только закончу все главы о ядре.</dd>
 </dl>
