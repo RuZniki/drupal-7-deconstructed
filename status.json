@@ -1,0 +1,28 @@
+{
+  "code": "ru",
+  "language": "Russian",
+  "maintainers": [""],
+  "files": {
+    "01-request.md": 80,
+    "02-bootstrap": 0,
+    "03-router.md": 0,
+    "04-database.md": 0,
+    "05-form.md": 0,
+    "06-entity.md": 0,
+    "07-field.md": 0,
+    "08-user.md": 0,
+    "09-node.md": 0,
+    "10-taxonomy.md": 0,
+    "11-render.md": 0,
+    "13-theme.md": 0,
+    "14-file.md": 0,
+    "15-javascript.md": 0,
+    "16-performance.md": 0,
+    "17-mail.md": 0,
+    "18-cron.md": 0,
+    "19-queue.md": 0,
+    "20-batch.md": 0,
+    "21-translation.md": 0,
+    "22-install-update.md": 0
+  }
+}
