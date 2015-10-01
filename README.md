@@ -6,15 +6,15 @@
 
 Если вам когда-нибудь становилось интересно, как работает Drupal, тогда это книга для вас.
 
-Предполагается, что книгу можно читать, даже если перед глазами нет кода, but feel free to reference the actual code for anything that you'd like as you go. Я старался добавлять ссылку API на любую функция или класс, о котором я говорю, так что просто жми на ссылку.
+Предполагается, что книгу можно читать, даже если перед глазами нет кода, but feel free to reference the actual code for anything that you'd like as you go. Я старался добавлять ссылки на любые API функции или классы, о которых я говорю, так что просто жми на ссылку.
 
 ## Contributing
 
-If you want to contribute to this, you have a few options.
+Если вы хотите принять участие в написании книги, то у вас есть несколько возможностей для этого.
 
-1. Submit pull requests for updates or new chapters.
-2. Subscribe to [the repo](https://github.com/mikecrittenden/drupal-7-deconstructed) and review new updates as they come in.
-3. Come talk to me! I'm [mikecrittenden@gmail.com](mailto:mikecrittenden@gmail.com) or [@mcrittenden](http://twitter.com/mcrittenden).
+1. Присылайте pull requests с обновлениями или новыми главами.
+2. Подписывайтесь на [репозиторий](https://github.com/mikecrittenden/drupal-7-deconstructed) и следите за новостями по мере их появления.
+3. Напишите мне! На мой e-mail [mikecrittenden@gmail.com](mailto:mikecrittenden@gmail.com) или в  [@mcrittenden](http://twitter.com/mcrittenden).
 
 ## FAQ
 
