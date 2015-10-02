@@ -8,13 +8,12 @@
 
 Предполагается, что книгу можно читать, даже если перед глазами нет кода, but feel free to reference the actual code for anything that you'd like as you go. Я старался добавлять ссылки на любые API функции или классы, о которых я говорю, так что просто жми на ссылку.
 
-## Contributing
+## Участие
+### Написание книги
+Так как книга, перевод которой вы сейчас читаете, еще не завершена, то вы можете [принять участие в её написание](https://github.com/mikecrittenden/drupal-7-deconstructed).
 
-Если вы хотите принять участие в написании книги, то у вас есть несколько возможностей для этого.
-
-1. Присылайте pull requests с обновлениями или новыми главами.
-2. Подписывайтесь на [репозиторий](https://github.com/mikecrittenden/drupal-7-deconstructed) и следите за новостями по мере их появления.
-3. Напишите мне! На мой e-mail [mikecrittenden@gmail.com](mailto:mikecrittenden@gmail.com) или в  [@mcrittenden](http://twitter.com/mcrittenden).
+### Перевод книги
+Подробная информация, о том как принять участие в переводе книги можно прочитать в файле [`TRANSLATION_NOTES.md`](TRANSLATION_NOTES.md) .
 
 ## FAQ
 
@@ -28,6 +27,6 @@
   <dt>Почему Drupal 7? Что на счет Drupal 8?</dt>
   <dd>Потому что на момент начала написания книги, до выхода Drupal 8 остается еще 1 год. Тем не менее Drupal 8 Deconstructed тоже надо будет написать!</dd>
 
-  <dt>What about deconstructing contrib?</dt>
+  <dt>Будет ли расмотрена работа модулей?</dt>
   <dd>Я с удовольствием рассмотрю работу популярных модулей, таких как Views, Panels, CTools, и т.д., как только закончу все главы о ядре.</dd>
 </dl>
